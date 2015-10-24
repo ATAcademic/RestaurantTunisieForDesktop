@@ -1,0 +1,1115 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package esprit.rt.gui;
+
+import esprit.rt.dao.MeubleDAO;
+import esprit.rt.entities.Chambre;
+import esprit.rt.entities.Meuble;
+import esprit.rt.entities.Place;
+import esprit.rt.utilities.SessionRestoTunisie;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Aditsan Kadmus
+ */
+public class OrganizerRestaurant extends javax.swing.JFrame {
+    private Map <Meuble,Place[]> listePlacesMeubles;
+    private int btnClicked;
+    private boolean [] isClicked;
+    private URL res;
+    private BufferedImage[] imgs;
+    Meuble m;
+        Place[] place;
+       JPanel tmp ;
+       Chambre c = new Chambre();
+    /**
+     * Creates new form OrganizerRestaurant
+     */
+
+    /**
+     * Creates new form OrganizerRestaurant
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @return 
+     */
+    public boolean lookForMeuble (float x, float y, int width, int height)
+    {
+//        for (Meuble e : listePlacesMeubles.keySet())
+//        {
+//            ((e.getX()-(e.getWidth()/2) < x+(width/2)) &&  (x+(width/2)< e.getX()+(e.getWidth()/2)) 
+//                    && (e.getY()-(e.getHeight()/2) < y+(height/2)) &&  (y+(width/2)< e.getY()+(e.getHeight()/2))) 
+//            && ( (e.getY()-(e.getHeight()/2) < y) &&  (y< e.getY()+(e.getHeight()/2)) && (e.getX()-(e.getWidth()/2) < x) &&  (x< e.getX()+(e.getWidth()/2)) )
+//            if ( ((e.getX()-(e.getWidth()/2) > x+(width/2)) &&  (x+(width/2)> e.getX()+(e.getWidth()/2))) )
+//                   
+//            {
+//                if  ((e.getY()-(e.getHeight()/2) > y+(height/2)) &&  (y+(height/2)> e.getY()+(e.getHeight()/2))) 
+//                return true;
+//            }
+//            if ((e.getX()-(e.getWidth()/2) < x) &&  (x< e.getX()+(e.getWidth()/2)))
+//            {
+//                if ((e.getY()-(e.getHeight()/2) < y) &&  (y< e.getY()+(e.getHeight()/2)))
+//                    return true;
+//            }
+//        }
+        return false;
+    }
+    public OrganizerRestaurant() {
+        c.setId(SessionRestoTunisie.id_currentChambre);
+        btnClicked=-1;
+        isClicked = new boolean[10];
+        isClicked[0]=false; isClicked[1]=false;
+        isClicked[2]=false; isClicked[3]=false;
+        isClicked[4]=false; isClicked[5]=false;
+        isClicked[6]=false; isClicked[7]=false;
+        
+        listePlacesMeubles = new HashMap<Meuble,Place[]> ();
+        imgs = new BufferedImage[10];
+        try {
+            imgs [0] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/1place001.png"));
+            imgs [1] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/5places001.png"));
+            imgs [2] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf001.png"));
+            imgs [3] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf002.png"));
+            imgs [4] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf003.png"));
+            imgs [5] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf004.png"));
+            imgs [6] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf005.png"));
+            imgs [7] = ImageIO.read( OrganizerRestaurant.class.getResource("/esprit/rt/images/pf006.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(OrganizerRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        initComponents();
+                tmp = drawingArea;
+               
+                place = new Place[5];
+                drawingArea = new JPanel (){
+                 @Override
+                 public void paint (Graphics g)
+                       {
+                           for (Meuble e : listePlacesMeubles.keySet())
+        {
+         
+                            g.drawImage(imgs[Integer.parseInt(String.valueOf(e.getImage().charAt(3)))],e.getX(), e.getY(), null);
+                        
+         
+            System.out.println("+++");
+        }
+                       }
+
+        
+               
+               };
+               
+    }
+   
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        toolBar = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btn1Place = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btn5Places = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        drawingArea = new javax.swing.JPanel();
+        controlBar = new javax.swing.JPanel();
+        parent1 = new javax.swing.JPanel();
+        btnNew = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnOpen = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnSave = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        btnDelete = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        btnDelChair = new javax.swing.JLabel();
+        parent10 = new javax.swing.JPanel();
+        btnAddChair = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(29, 29, 29));
+
+        toolBar.setBackground(new java.awt.Color(29, 29, 29));
+        toolBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel4.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btn1Place.setBackground(new java.awt.Color(29, 29, 29));
+        btn1Place.setForeground(new java.awt.Color(204, 204, 204));
+        btn1Place.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/1place001.png"))); // NOI18N
+        btn1Place.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn1PlaceMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn1Place, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn1Place, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btn5Places.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/5places001.png"))); // NOI18N
+        btn5Places.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn5PlacesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn5Places, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn5Places, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel6.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel7.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf002ico.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        jPanel14.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf003ico.png"))); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        jPanel15.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf004ico.png"))); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        jPanel16.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf001ico.png"))); // NOI18N
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        jPanel19.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf006ico.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        jPanel21.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pf005ico.png"))); // NOI18N
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout toolBarLayout = new javax.swing.GroupLayout(toolBar);
+        toolBar.setLayout(toolBarLayout);
+        toolBarLayout.setHorizontalGroup(
+            toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolBarLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        toolBarLayout.setVerticalGroup(
+            toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        drawingArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drawingAreaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                drawingAreaMouseEntered(evt);
+            }
+        });
+
+        javax.swing.GroupLayout drawingAreaLayout = new javax.swing.GroupLayout(drawingArea);
+        drawingArea.setLayout(drawingAreaLayout);
+        drawingAreaLayout.setHorizontalGroup(
+            drawingAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1054, Short.MAX_VALUE)
+        );
+        drawingAreaLayout.setVerticalGroup(
+            drawingAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        controlBar.setBackground(new java.awt.Color(29, 29, 29));
+
+        parent1.setBackground(new java.awt.Color(29, 29, 29));
+        parent1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/newchamber.png"))); // NOI18N
+        btnNew.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout parent1Layout = new javax.swing.GroupLayout(parent1);
+        parent1.setLayout(parent1Layout);
+        parent1Layout.setHorizontalGroup(
+            parent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, parent1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNew)
+                .addContainerGap())
+        );
+        parent1Layout.setVerticalGroup(
+            parent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/openchamber.png"))); // NOI18N
+        btnOpen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnOpen)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnOpen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/savechamber.png"))); // NOI18N
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaveMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel8.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/deletemb.png"))); // NOI18N
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+        );
+
+        jPanel9.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnDelChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/minuschair.png"))); // NOI18N
+        btnDelChair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnDelChair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnDelChair, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+        );
+
+        parent10.setBackground(new java.awt.Color(29, 29, 29));
+        parent10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnAddChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/rt/images/pluschair.png"))); // NOI18N
+        btnAddChair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsME(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsMEX(evt);
+            }
+        });
+
+        javax.swing.GroupLayout parent10Layout = new javax.swing.GroupLayout(parent10);
+        parent10.setLayout(parent10Layout);
+        parent10Layout.setHorizontalGroup(
+            parent10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parent10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAddChair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        parent10Layout.setVerticalGroup(
+            parent10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAddChair, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+        );
+
+        jPanel10.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 48, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout controlBarLayout = new javax.swing.GroupLayout(controlBar);
+        controlBar.setLayout(controlBarLayout);
+        controlBarLayout.setHorizontalGroup(
+            controlBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(parent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(parent10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        controlBarLayout.setVerticalGroup(
+            controlBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlBarLayout.createSequentialGroup()
+                .addGroup(controlBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlBarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlBarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(controlBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(parent1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(parent10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlBarLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(controlBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(controlBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(drawingArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(controlBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(drawingArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void drawingAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawingAreaMouseClicked
+
+        if (btnClicked == -1)
+            return;
+        
+        
+                                    System.out.println(lookForMeuble(evt.getX(),evt.getY(),imgs[0].getWidth(),imgs[0].getHeight()));
+
+                if ((lookForMeuble(evt.getX(),evt.getY(),imgs[btnClicked].getWidth(),imgs[btnClicked].getHeight()) == false) && ( btnClicked!=-1))
+                {
+                    
+                 m = new Meuble();   
+                m.setCurrentPlaces(1);
+                if (btnClicked == 2)
+                    m.setCurrentPlaces(6);
+                if (btnClicked == 0)
+                    m.setMaxPlaces(5);
+                if (btnClicked == 1)
+                    m.setMaxPlaces(10);
+                if (btnClicked == 2)
+                    m.setMaxPlaces(6);
+                m.setX(evt.getX()-(imgs[btnClicked].getWidth()/2));
+                m.setY(evt.getY()-(imgs[btnClicked].getHeight()/2));
+                m.setHeight(imgs[btnClicked].getHeight());
+                m.setWidth(imgs[btnClicked].getWidth());
+                m.setReserved(0);
+                m.setChambre(c);
+                if (btnClicked != 6)
+                    m.setPriority(0);
+                else
+                    m.setPriority(1);
+                m.setImage("img"+btnClicked);
+                listePlacesMeubles.put(m,place);
+                Graphics g;
+                if (drawingArea.getGraphics() == null)
+                {
+                g = tmp.getGraphics();
+                }
+                else
+                {
+                    g = drawingArea.getGraphics();
+                }
+                drawingArea.paint(g);
+                
+
+//                drawingArea.paint(drawingArea.getGraphics() );
+        for (Entry<Meuble,Place[]> e : listePlacesMeubles.entrySet())
+                    {
+                        System.out.println(e.getKey());
+                    }
+        }
+        
+        
+    }//GEN-LAST:event_drawingAreaMouseClicked
+
+    private void btn1PlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1PlaceMouseClicked
+        // TODO add your handling code here:
+        
+        if (btnClicked == 0)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[0]=false;
+            return;
+        }
+        isClicked[0]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=0;
+        
+    }//GEN-LAST:event_btn1PlaceMouseClicked
+
+    private void btn5PlacesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn5PlacesMouseClicked
+        // TODO add your handling code here:
+        
+        if (btnClicked == 1)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[0]=false;
+            return;
+        }
+        isClicked[1]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=1;
+        
+    }//GEN-LAST:event_btn5PlacesMouseClicked
+
+    private void drawingAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawingAreaMouseEntered
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_drawingAreaMouseEntered
+
+    private void btnsME(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsME
+        // TODO add your handling code here:
+        int currentButton = -1;
+        Component tmp = evt.getComponent();
+        if (tmp == btn1Place)
+            currentButton = 0;
+        if (tmp == btn5Places)
+            currentButton = 1;
+        if (tmp == jLabel12)
+            currentButton = 2;
+        if (tmp == jLabel13)
+            currentButton = 3;
+        if (tmp == jLabel14)
+            currentButton = 4;
+        if (tmp == jLabel15)
+            currentButton = 5;
+        if (tmp == jLabel16)
+            currentButton = 6;
+        if (tmp == jLabel17)
+            currentButton = 7;
+        if (currentButton != -1)
+            if (isClicked[currentButton])
+                return;
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        if ((evt.getComponent() != btnNew) && (evt.getComponent() != btnSave) && (evt.getComponent() != btnDelete)
+                && (evt.getComponent() != btnAddChair) && (evt.getComponent() != btnDelChair) && (evt.getComponent() != btnOpen))
+            evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        if (evt.getComponent() == btnNew)
+            btnNew.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/newchamberc.png")));
+        if (evt.getComponent() == btnSave)
+            btnSave.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/savechamberc.png")));
+        if (evt.getComponent() == btnDelete)
+            btnDelete.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/deletembc.png")));
+        if (evt.getComponent() == btnAddChair)
+            btnAddChair.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/pluschairc.png")));
+        if (evt.getComponent() == btnDelChair)
+            btnDelChair.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/minuschairc.png")));
+        if (evt.getComponent() == btnOpen)
+            btnOpen.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/openchamberc.png")));
+    }//GEN-LAST:event_btnsME
+
+    private void btnsMEX(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsMEX
+        // TODO add your handling code here:
+        int currentButton = -1;
+        Component tmp = evt.getComponent();
+        if (tmp == btn1Place)
+            currentButton = 0;
+        if (tmp == btn5Places)
+            currentButton = 1;
+        if (tmp == jLabel12)
+            currentButton = 2;
+        if (tmp == jLabel13)
+            currentButton = 3;
+        if (tmp == jLabel14)
+            currentButton = 4;
+        if (tmp == jLabel15)
+            currentButton = 5;
+        if (tmp == jLabel16)
+            currentButton = 6;
+        if (tmp == jLabel17)
+            currentButton = 7;
+        if (currentButton != -1)
+            if (isClicked[currentButton])
+                return;
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+        if (evt.getComponent() == btnNew)
+            btnNew.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/newchamber.png")));
+        if (evt.getComponent() == btnSave)
+            btnSave.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/savechamber.png")));
+        if (evt.getComponent() == btnDelete)
+            btnDelete.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/deletemb.png")));
+        if (evt.getComponent() == btnAddChair)
+            btnAddChair.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/pluschair.png")));
+        if (evt.getComponent() == btnDelChair)
+            btnDelChair.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/minuschair.png")));
+        if (evt.getComponent() == btnOpen)
+            btnOpen.setIcon(new ImageIcon(OrganizerRestaurant.class.getResource("/esprit/rt/images/openchamber.png")));
+    }//GEN-LAST:event_btnsMEX
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowStateChanged
+
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
+        // TODO add your handling code here:
+        for (Entry<Meuble,Place[]> e : listePlacesMeubles.entrySet())
+                    {
+                        new MeubleDAO().insertMeuble(e.getKey());
+                    }
+    }//GEN-LAST:event_btnSaveMouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 2)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[2]=false;
+            return;
+        }
+        isClicked[2]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=2;
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 3)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[3]=false;
+            return;
+        }
+        isClicked[3]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=3;
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 4)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[4]=false;
+            return;
+        }
+        isClicked[4]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=4;
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 5)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[5]=false;
+            return;
+        }
+        isClicked[5]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=5;
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 6)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[6]=false;
+            return;
+        }
+        isClicked[6]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=6;
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+        if (btnClicked == 7)
+        {
+            btnClicked=-1;
+            evt.getComponent().getParent().setBackground(Color.decode("#1d1d1d"));
+            isClicked[7]=false;
+            return;
+        }
+        isClicked[7]=true;
+        evt.getComponent().getParent().setBackground(Color.decode("#818181"));
+        btnClicked=7;
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(OrganizerRestaurant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(OrganizerRestaurant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(OrganizerRestaurant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(OrganizerRestaurant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new OrganizerRestaurant().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btn1Place;
+    private javax.swing.JLabel btn5Places;
+    private javax.swing.JLabel btnAddChair;
+    private javax.swing.JLabel btnDelChair;
+    private javax.swing.JLabel btnDelete;
+    private javax.swing.JLabel btnNew;
+    private javax.swing.JLabel btnOpen;
+    private javax.swing.JLabel btnSave;
+    private javax.swing.JPanel controlBar;
+    private javax.swing.JPanel drawingArea;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel parent1;
+    private javax.swing.JPanel parent10;
+    private javax.swing.JPanel toolBar;
+    // End of variables declaration//GEN-END:variables
+
+    
+}
